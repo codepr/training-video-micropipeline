@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift(File.expand_path("../src", __dir__))
+
+require "training_video_pipeline"
+
+config_path = ARGV[0] || File.expand_path("../config/config.yml", __dir__)
+TrainingVideoPipeline::Daemon.new(config_path).run

@@ -1,0 +1,56 @@
+incoming_dir: "./incoming"
+processing_dir: "./processing"
+processed_dir: "./processed"
+failed_dir: "./failed"
+raw_archive_dir: "./archive/raw"
+log_file: "./logs/pipeline.log"
+database_path: "./db/metadata.sqlite3"
+
+video_extensions:
+  - ".mp4"
+  - ".mov"
+  - ".m4v"
+  - ".mkv"
+
+upload:
+  stabilization_seconds: 10
+  poll_interval_seconds: 5
+
+motion_detection:
+  strategy: "frame_difference"
+  threshold: 0.02
+  frame_difference_threshold: 6.0
+  maximum_frame_difference: 60.0
+  minimum_activity_duration: 0.5
+  merge_gap_seconds: 3
+  ignore_head_seconds: 10
+  ignore_tail_seconds: 7
+  discard_terminal_motion: false
+  terminal_motion_gap_seconds: 1.25
+  terminal_motion_margin_seconds: 1.0
+  sample_fps: 2
+  frame_width: 64
+  frame_height: 36
+  activity_selection: "exercise_group"
+  later_group_weight: 0.1
+  presence_fallback:
+    enabled: true
+    threshold: 18.0
+    reference_seconds: 1.0
+    minimum_motion_window_seconds: 8.0
+    late_motion_start_seconds: 40.0
+    minimum_presence_window_seconds: 12.0
+    low_motion_anchor_threshold: 3.0
+    low_motion_anchor_minimum_events: 3
+    low_motion_anchor_trim_margin_seconds: 3.0
+    low_motion_anchor_max_end_trim_seconds: 5.0
+
+trimming:
+  pre_buffer_seconds: 3
+  post_buffer_seconds: 1
+
+compression:
+  crf: 28
+  preset: "medium"
+  video_codec: "libx264"
+  audio_codec: "aac"
